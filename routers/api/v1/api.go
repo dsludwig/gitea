@@ -383,6 +383,7 @@ func RegisterRoutes(m *macaron.Macaron) {
 				}, reqToken())
 				m.Get("/raw/*", context.RepoRef(), repo.GetRawFile)
 				m.Get("/archive/*", repo.GetArchive)
+				m.Get("/trees/*", context.RepoRef(), repo.GetTree)
 				m.Combo("/forks").Get(repo.ListForks).
 					Post(reqToken(), bind(api.CreateForkOption{}), repo.CreateFork)
 				m.Group("/branches", func() {
